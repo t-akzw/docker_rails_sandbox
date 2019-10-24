@@ -6,11 +6,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_rails
-#    command: 'echo true'
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./app:/app
     ports:
       - "3000:3000"
+    environment:
+      - BUNDLE_PATH=/app/vendor/bundle
     tty: true
 #    depends_on:
 #      - db

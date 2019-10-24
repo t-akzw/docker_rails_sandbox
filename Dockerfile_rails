@@ -1,6 +1,24 @@
 FROM euclid3620/rails_base:test
 
 ENV APP_PATH=/app
-RUN mkdir $APP_PATH
+RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
+ADD app/Gemfile Gemfile
+ADD app/Gemfile.lock Gemfile.lock
+RUN bundle install --path vendor/bundle
+ADD app /app
+
+ENV RAILS_ENV=development
+RUN bundle exec rails db:create
+RUN bundle exec rails db:migrate
+RUN bundle exec rails assets:precompile
+
+ADD dotenv /app/.env
+ADD entrypoint.sh /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/entrypoint.sh
+
+EXPOSE 3000
+ENTRYPOINT ["entrypoint.sh"]
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
