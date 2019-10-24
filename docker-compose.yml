@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile_rails
 #    command: 'echo true'
-#    volumes:
-#      - .:/app
+    volumes:
+      - ./app:/app
     ports:
       - "3000:3000"
     tty: true
