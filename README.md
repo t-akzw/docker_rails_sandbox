@@ -7,3 +7,8 @@
 
 volumeでホストの./appをコンテナ内の/appにマウントしているので、  
 そこでbundle initしてrailsを導入する。
+
+```bash
+# Gemfileのrailsバージョンを6.0.0に指定
+bundle install --path vendor/bundle
+```
