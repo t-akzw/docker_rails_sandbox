@@ -1,0 +1,6 @@
+FROM euclid3620/rails_base:test
+
+ENV APP_PATH=/app
+RUN mkdir $APP_PATH
+WORKDIR $APP_PATH
+

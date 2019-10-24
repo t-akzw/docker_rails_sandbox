@@ -1,0 +1,16 @@
+version: '3'
+services:
+#  db:
+#    image: postgres
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_rails
+#    command: 'echo true'
+#    volumes:
+#      - .:/app
+    ports:
+      - "3000:3000"
+    tty: true
+#    depends_on:
+#      - db
