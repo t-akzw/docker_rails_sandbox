@@ -27,3 +27,5 @@ bundle exec rails s
 - 0.0.1  
   0.0.0.0:3000でRailsが立ち上がる。  
   DBはsqliteのまま。  
+- 0.0.2  
+  rubocop導入。  
