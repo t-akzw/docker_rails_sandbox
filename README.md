@@ -1,6 +1,6 @@
 # docker_rails_sandbox
 
-# 初期構築手順
+# Rails newでapp以下にファイルを作成するまで
 
 まず、ホスト側で`docker-compose up -d --build`する。
 次に、`docker exec -i -t docker_rails_sandbox_web_1 bash`してコンテナに入る。
@@ -17,5 +17,13 @@ bin/rails db:create
 bin/rails s
 bundle exec rails webpacker:install #こけたので入れた
 bundle exec rails s
-
+# http://0.0.0.0:3000/
 ```
+
+# 導入手順
+
+# Releases
+
+- 0.0.1  
+  0.0.0.0:3000でRailsが立ち上がる。  
+  DBはsqliteのまま。  
