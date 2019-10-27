@@ -2,6 +2,8 @@
 
 # Rails newでapp以下にファイルを作成するまで
 
+euclid3620/rails_baseは./Dockerfileをdockerhubに登録したもの
+
 まず、ホスト側で`docker-compose up -d --build`する。
 次に、`docker exec -i -t docker_rails_sandbox_web_1 bash`してコンテナに入る。
 
