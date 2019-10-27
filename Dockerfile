@@ -15,7 +15,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 #  $gem environment
 RUN \
   echo 'gem: -N' >> ~/.gemrc && \
-  gem install bundler -v 2.0.2
+  gem install bundler -v 2.0.2 && \
+  gem install solargraph rubocop && \
+  gem install ruby-debug-ide debase
 
 # lang
 RUN echo "ja_JP.UTF-8 UTF-8" > /etc/locale.gen && \
