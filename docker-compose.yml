@@ -3,9 +3,7 @@ services:
 #  db:
 #    image: postgres
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile_rails
+    image: euclid3620/rails_sandbox:latest
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./app:/app
