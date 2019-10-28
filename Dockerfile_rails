@@ -1,4 +1,4 @@
-FROM euclid3620/rails_base:test
+FROM euclid3620/rails_base:latest
 
 ENV APP_PATH=/app
 RUN mkdir -p $APP_PATH
