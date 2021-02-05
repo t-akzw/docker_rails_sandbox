@@ -45,6 +45,7 @@ services:
       - DATABASE_PRIMARY_HOST=db1
       - DATABASE_SECONDARY_HOST=db2
       - DATABASE_USER=postgres
+      - DATABASE_NAME=sampledb
     tty: true
     depends_on:
       - db1
