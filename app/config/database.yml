@@ -6,43 +6,22 @@ default: &default
   encoding: unicode
   username: <%= ENV["DATABASE_USER"] %>
   password: <%= ENV["DATABASE_PASSWORD"] %>
-  database: <%= ENV["DATABASE_NAME"] %>
   port: 5432
 
 development:
-  primary:
-    <<: *default
-    host: <%= ENV["DATABASE_PRIMARY_HOST"] %>
-  primary_replica:
-    <<: *default
-    host: <%= ENV["DATABASE_PRIMARY_HOST"] %>
-    replica: true
-  secondary:
-    <<: *default
-    host: <%= ENV["DATABASE_SECONDARY_HOST"] %>
-  secondary_replica:
-    <<: *default
-    host: <%= ENV["DATABASE_SECONDARY_HOST"] %>
-    replica: true
+  <<: *default
+  host: <%= ENV["DATABASE_PRIMARY_HOST"] %>
+  database: <%= ENV["DATABASE_NAME"] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: <%= ENV["DATABASE_PRIMARY_HOST"] %>
+  database: testdb
 
 production:
-  primary:
-    <<: *default
-    host: <%= ENV["DATABASE_PRIMARY_HOST"] %>
-  primary_replica:
-    <<: *default
-    host: <%= ENV["DATABASE_PRIMARY_HOST"] %>
-    replica: true
-  secondary:
-    <<: *default
-    host: <%= ENV["DATABASE_SECONDARY_HOST"] %>
-  secondary_replica:
-    <<: *default
-    host: <%= ENV["DATABASE_SECONDARY_HOST"] %>
-    replica: true
+  <<: *default
+  host: <%= ENV["DATABASE_PRIMARY_HOST"] %>
+  database: <%= ENV["PROD_DATABASE_NAME"] %>

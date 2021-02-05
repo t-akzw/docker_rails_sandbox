@@ -37,6 +37,12 @@ echo "DATABASE_PASSWORD=password" >> .env_postgres
 
 pgAdminでDBにつなぐときは、db1、db2をホストで指定して、5432をポートで指定する。
 
+# DBアクセス
+
+```bash
+bundle exec rails db;
+```
+
 # Releases
 
 - 0.0.1  

@@ -8,6 +8,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 SampleUser.create!(
-  name: "my name",
-  content: "hello!",
+  name: "hogehoge",
+  age: 12,
 )
