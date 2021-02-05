@@ -24,6 +24,25 @@ bundle exec rails s
 
 # 導入手順
 
+.envファイルは外部サーバから取ってきたい・・
+
+```bash
+echo "" >> .env
+echo "DATABASE_PASSWORD=password" >> .env_postgres
+./start.sh
+```
+
+- Rails:   http://localhost:3000
+- pgAdmin: http://localhost:8080
+
+pgAdminでDBにつなぐときは、db1、db2をホストで指定して、5432をポートで指定する。
+
+# DBアクセス
+
+```bash
+bundle exec rails db;
+```
+
 # Releases
 
 - 0.0.1  
