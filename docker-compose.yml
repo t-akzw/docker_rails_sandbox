@@ -1,16 +1,63 @@
 version: '3'
 services:
-#  db:
-#    image: postgres
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@example.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    hostname: pgadmin4
+    restart: always
+    networks:
+      - back
+      - default
+  db1:
+    image: postgres:10.1
+    ports:
+      - 15432:5432
+    env_file: .env_postgres
+    environment:
+      - DATABASE_USER=postgres
+    networks:
+      - back
+    restart: always
+  db2:
+    image: postgres:10.1
+    ports:
+      - 25432:5432
+    env_file: .env_postgres
+    environment:
+      - DATABASE_USER=postgres
+    networks:
+      - back
+    restart: always
   web:
-    image: euclid3620/rails_sandbox:latest
+    build:
+      context: "./"
+      dockerfile: "Dockerfile_rails"
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./app:/app
     ports:
-      - "3000:3000"
+      - 3000:3000
+    env_file: 
+      - .env_postgres
     environment:
       - BUNDLE_PATH=/app/vendor/bundle
+      - DATABASE_PRIMARY_HOST=db1
+      - DATABASE_SECONDARY_HOST=db2
+      - DATABASE_USER=postgres
+      - DATABASE_NAME=sampledb
+      - PROD_DATABASE_NAME=proddb
     tty: true
-#    depends_on:
-#      - db
+    depends_on:
+      - db1
+      - db2
+    networks:
+      - back
+      - default
+    restart: always
+
+networks:
+  back:

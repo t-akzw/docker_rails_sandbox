@@ -10,9 +10,6 @@ RUN bundle install --path vendor/bundle
 ADD app /app
 
 ENV RAILS_ENV=development
-RUN bundle exec rails db:create
-RUN bundle exec rails db:migrate
-RUN bundle exec rails assets:precompile
 
 ADD dotenv /app/.env
 ADD entrypoint.sh /usr/bin/entrypoint.sh
